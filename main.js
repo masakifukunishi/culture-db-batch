@@ -1,7 +1,7 @@
 const openAIApi = require("./lib/openAIApi");
 const mongoDB = require("./lib/mongoDB");
 
-const countries = async () => {
+const insertCounties = async () => {
   // let countries = await openAIApi.getCountries();
   let countries = ["Japan"];
   countries = await openAIApi.getCountriesInfo(countries);
@@ -9,8 +9,15 @@ const countries = async () => {
   countries = null;
 };
 
+const insertCities = async () => {
+  let countries = await mongoDB.getCountries();
+  for (let country of countries) {
+    console.log(country.name);
+  }
+};
+
 const main = async () => {
-  await countries();
-  console.log(222);
+  // await insertCounties();
+  await insertCities();
 };
 main();
