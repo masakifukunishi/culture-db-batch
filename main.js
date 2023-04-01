@@ -8,7 +8,7 @@ const insertCounties = async () => {
   for (let countryName of countriyNames) {
     countries.push(await openAIApi.getCountryInfo(countryName));
   }
-  await mongoDB.insertCountries(countries);
+  await mongoDB.insertMany("countries", countries);
 };
 
 const insertCountyCultures = async () => {
@@ -20,7 +20,20 @@ const insertCountyCultures = async () => {
     for (let cultureName of cultureNames) {
       cultures.push(await openAIApi.getCountyCultureDescription(country.name, cultureName));
     }
-    await mongoDB.insertCountryCultures(country._id, cultures);
+    await mongoDB.updateField("countries", country._id, "cultures", cultures);
+  }
+};
+
+const insertCountyFood = async () => {
+  let countries = await mongoDB.getCountries();
+  for (let country of countries) {
+    let foodNames = [];
+    let food = [];
+    foodNames = await openAIApi.getCountyFood(country.name);
+    for (let foodName of foodNames) {
+      food.push(await openAIApi.getCountyFoodDescription(country.name, foodName));
+    }
+    await mongoDB.updateField("countries", country._id, "food", food);
   }
 };
 
@@ -36,13 +49,14 @@ const insertCities = async () => {
       cities[cities.length - 1].countryCode = country.countryCode;
       cities[cities.length - 1].countryName = country.name;
     }
-    await mongoDB.insertCities(cities);
+    await mongoDB.insertMany("cities", cities);
   }
 };
 
 const main = async () => {
   // await insertCounties();
-  await insertCountyCultures();
+  // await insertCountyCultures();
+  await insertCountyFood();
   // await insertCities();
 };
 main();
