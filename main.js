@@ -11,6 +11,18 @@ const insertCounties = async () => {
   await mongoDB.insertCountries(countries);
 };
 
+const insertCountyCultures = async () => {
+  let countries = await mongoDB.getCountries();
+  for (let country of countries) {
+    let cultures = [];
+    cultures = await openAIApi.getCountyCultures(country.name);
+    await mongoDB.insertCountryCultures(
+      country._id,
+      cultures.map((culture) => ({ name: culture }))
+    );
+  }
+};
+
 const insertCities = async () => {
   let countries = await mongoDB.getCountries();
   for (let country of countries) {
@@ -29,6 +41,7 @@ const insertCities = async () => {
 
 const main = async () => {
   // await insertCounties();
-  await insertCities();
+  await insertCountyCultures();
+  // await insertCities();
 };
 main();
