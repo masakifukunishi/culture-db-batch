@@ -6,21 +6,29 @@ const insertCounties = async () => {
   let countriyNames = ["Japan"];
   let countries = [];
   for (let countryName of countriyNames) {
-    countries.push(await openAIApi.getCountriesInfo(countryName));
+    countries.push(await openAIApi.getCountryInfo(countryName));
   }
   await mongoDB.insertCountries(countries);
-  countries = null;
 };
 
 const insertCities = async () => {
   let countries = await mongoDB.getCountries();
   for (let country of countries) {
-    cities = await openAIApi.getCities(country.name);
+    let citieNames = [];
+    citieNames = await openAIApi.getCities(country.name);
+    let cities = [];
+    for (let cityName of citieNames) {
+      cities.push(await openAIApi.getCityInfo(cityName));
+      cities[cities.length - 1].countryID = country._id.toString();
+      cities[cities.length - 1].countryCode = country.countryCode;
+      cities[cities.length - 1].countryName = country.name;
+    }
+    await mongoDB.insertCities(cities);
   }
 };
 
 const main = async () => {
-  await insertCounties();
-  // await insertCities();
+  // await insertCounties();
+  await insertCities();
 };
 main();
