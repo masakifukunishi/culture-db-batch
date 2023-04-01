@@ -14,12 +14,13 @@ const insertCounties = async () => {
 const insertCountyCultures = async () => {
   let countries = await mongoDB.getCountries();
   for (let country of countries) {
+    let cultureNames = [];
     let cultures = [];
-    cultures = await openAIApi.getCountyCultures(country.name);
-    await mongoDB.insertCountryCultures(
-      country._id,
-      cultures.map((culture) => ({ name: culture }))
-    );
+    cultureNames = await openAIApi.getCountyCultures(country.name);
+    for (let cultureName of cultureNames) {
+      cultures.push(await openAIApi.getCountyCultureDescription(country.name, cultureName));
+    }
+    await mongoDB.insertCountryCultures(country._id, cultures);
   }
 };
 
