@@ -61,7 +61,7 @@ const insertCountryImage = async () => {
     const urls = await openAIImage.generateCountryImage(country.name);
     let s3Location = [];
     for (let i = 0; i < urls.length; i++) {
-      s3Location.push((await amazonS3.uploadFile(urls[i], `${country.countryCode}/images/${i}.png`)).Location);
+      s3Location.push(await amazonS3.uploadFile(urls[i], `${country.countryCode}/images/${i}.png`));
     }
     await mongoDB.updateField("countries", country._id, "images", s3Location);
   }

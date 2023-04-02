@@ -1,6 +1,7 @@
 {
   "type": "module",
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.304.0",
     "aws-sdk": "^2.1348.0",
     "dotenv": "^16.0.3",
     "mongodb": "^5.1.0",
