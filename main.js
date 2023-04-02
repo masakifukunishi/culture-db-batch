@@ -1,7 +1,7 @@
-const openAIText = require("./lib/openAIText");
-const openAIImage = require("./lib/openAIImage");
-const amazonS3 = require("./lib/amazonS3");
-const mongoDB = require("./lib/mongoDB");
+import openAIText from "./lib/openAIText.js";
+import openAIImage from "./lib/openAIImage.js";
+import amazonS3 from "./lib/amazonS3.js";
+import mongoDB from "./lib/mongoDB.js";
 
 const insertCounties = async () => {
   // let countriyNames = await openAIText.getCountries();
