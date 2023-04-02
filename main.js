@@ -1,6 +1,6 @@
 const openAIText = require("./lib/openAIText");
 const openAIImage = require("./lib/openAIImage");
-const imageDownload = require("./lib/imageDownload");
+const amazonS3 = require("./lib/amazonS3");
 const mongoDB = require("./lib/mongoDB");
 
 const insertCounties = async () => {
@@ -59,7 +59,8 @@ const insertCountryImage = async () => {
   let countries = await mongoDB.getCountries();
   for (let country of countries) {
     const imageURL = await openAIImage.generateCountryImage(country.name);
-    await imageDownload.imageDownload(imageURL, country.name);
+    const s3Location = (await amazonS3.uploadFile(imageURL)).Location;
+    console.log(s3Location);
   }
 };
 
