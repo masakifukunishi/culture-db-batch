@@ -56,31 +56,16 @@ const insertCountyFood = async () => {
   }
 };
 
-const insertCities = async () => {
-  let countries = await mongoDB.getCountries();
-  for (let country of countries) {
-    let citieNames = [];
-    citieNames = await openAIText.getCities(country.name);
-    let cities = [];
-    for (let cityName of citieNames) {
-      cities.push(await openAIText.getCityInfo(cityName));
-      cities[cities.length - 1].countryID = country._id.toString();
-      cities[cities.length - 1].countryCode = country.countryCode;
-      cities[cities.length - 1].countryName = country.name;
-    }
-    await mongoDB.insertMany("cities", cities);
-  }
-};
-
 const insertCountryImage = async () => {
   let countries = await mongoDB.getCountries();
   for (let country of countries) {
     const urls = await openAIImage.generateCountryImage(country.name);
-    let s3Location = [];
-    for (let i = 0; i < urls.length; i++) {
-      s3Location.push(await amazonS3.uploadFile(urls[i], `${country.code}/images/${i}.png`));
-    }
-    await mongoDB.updateField("countries", country._id, "images", s3Location);
+    console.log(urls);
+    // let s3Location = [];
+    // for (let i = 0; i < urls.length; i++) {
+    //   s3Location.push(await amazonS3.uploadFile(urls[i], `${country.code}/images/${i}.png`));
+    // }
+    // await mongoDB.updateField("countries", country._id, "images", s3Location);
   }
 };
 
@@ -107,11 +92,10 @@ const insertCountryCultureImage = async () => {
 };
 
 const main = async () => {
-  await insertCounties();
+  // await insertCounties();
   // await insertCountyCultures();
   // await insertCountyFood();
-  // await insertCountryImage();
+  await insertCountryImage();
   // await insertCountryFoodImage();
-  // await insertCities();
 };
 main();
