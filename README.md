@@ -2,26 +2,28 @@
 
 # culture-db-batch
 
-<a href="https://openai.com/" target="_blank">
-  <img width="110" alt="OpenAI-logo" src="README/OpenAI.png" />
-</a>
-<a href="https://mongodb.com/" target="_blank">
-  <img width="110" alt="mongoDB-logo" src="README/mongoDB.png" />
-</a>
-<a href="https://aws.amazon.com/s3/" target="_blank">
-  <img width="110" alt="S3-logo" src="README/S3.png" />
-</a>
+<div style="background-color:#fff">
+  <a href="https://openai.com/" target="_blank">
+    <img width="140" alt="OpenAI-logo" src="README/OpenAI.png" />
+  </a>
+  <a href="https://mongodb.com/" target="_blank">
+    <img width="140" alt="mongoDB-logo" src="README/mongoDB.png" />
+  </a>
+  <a href="https://aws.amazon.com/s3/" target="_blank">
+    <img width="140" alt="S3-logo" src="README/S3.png" />
+  </a>
+  </div>
 </div>
 ## What is this?
 
 - Get data
 
   1. countries data from REST Countries API
-  2. countries' culture data from OpenAI API
-  3. countries' food data from OpenAI API
-  4. countries' image data from OpenAI API (DALL·E 2)
-  5. countries' culture image data from OpenAI API (DALL·E 2)
-  6. countries' food image data from OpenAI API (DALL·E 2)
+  1. countries' culture data from OpenAI API
+  1. countries' food data from OpenAI API
+  1. countries' image data from OpenAI API (DALL·E 2)
+  1. countries' culture image data from OpenAI API (DALL·E 2)
+  1. countries' food image data from OpenAI API (DALL·E 2)
 
 - Store data
 
