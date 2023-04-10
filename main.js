@@ -60,12 +60,11 @@ const insertCountryImage = async () => {
   let countries = await mongoDB.getCountries();
   for (let country of countries) {
     const urls = await openAIImage.generateCountryImage(country.name);
-    console.log(urls);
-    // let s3Location = [];
-    // for (let i = 0; i < urls.length; i++) {
-    //   s3Location.push(await amazonS3.uploadFile(urls[i], `${country.code}/images/${i}.png`));
-    // }
-    // await mongoDB.updateField("countries", country._id, "images", s3Location);
+    let s3Location = [];
+    for (let i = 0; i < urls.length; i++) {
+      s3Location.push(await amazonS3.uploadFile(urls[i], `${country.code}/images/${i}.png`));
+    }
+    await mongoDB.updateField("countries", country._id, "images", s3Location);
   }
 };
 
@@ -92,10 +91,11 @@ const insertCountryCultureImage = async () => {
 };
 
 const main = async () => {
-  // await insertCounties();
-  // await insertCountyCultures();
-  // await insertCountyFood();
+  await insertCounties();
+  await insertCountyCultures();
+  await insertCountyFood();
   await insertCountryImage();
-  // await insertCountryFoodImage();
+  await insertCountryFoodImage();
+  await insertCountryCultureImage();
 };
 main();
