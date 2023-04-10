@@ -2,7 +2,6 @@
 
 # culture-db-batch
 
-<div style="background-color:#fff">
   <a href="https://openai.com/" target="_blank">
     <img width="140" alt="OpenAI-logo" src="README/OpenAI.png" />
   </a>
@@ -12,22 +11,21 @@
   <a href="https://aws.amazon.com/s3/" target="_blank">
     <img width="140" alt="S3-logo" src="README/S3.png" />
   </a>
-  </div>
 </div>
 ## What is this?
 
 - Get data
 
-  1. countries data from REST Countries API
-  1. countries' culture data from OpenAI API
-  1. countries' food data from OpenAI API
-  1. countries' image data from OpenAI API (DALL·E 2)
-  1. countries' culture image data from OpenAI API (DALL·E 2)
-  1. countries' food image data from OpenAI API (DALL·E 2)
+  - countries data from REST Countries API
+  - countries' culture data from OpenAI API
+  - countries' food data from OpenAI API
+  - countries' image data from OpenAI API (DALL·E 2)
+  - countries' culture image data from OpenAI API (DALL·E 2)
+  - countries' food image data from OpenAI API (DALL·E 2)
 
 - Store data
 
-  - 1 ~ 3 data to MongoDB
+  - Text data to MongoDB
 
   ```json
   [
@@ -72,7 +70,7 @@
   ]
   ```
 
-  - 4 ~ 6 data (images) to AWS S3
+  - Image data (images) to AWS S3
     - 4 countries image data to `AWS_S3_BUCKET_NAME/countries/image`
     - 5 food's image data to `AWS_S3_BUCKET_NAME/countries/food`
     - 6 culture's image data to `AWS_S3_BUCKET_NAME/countries/cultures`
