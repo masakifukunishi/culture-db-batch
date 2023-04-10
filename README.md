@@ -71,9 +71,9 @@
   ```
 
   - Image data (images) to AWS S3
-    - 4 countries image data to `AWS_S3_BUCKET_NAME/countries/image`
-    - 5 food's image data to `AWS_S3_BUCKET_NAME/countries/food`
-    - 6 culture's image data to `AWS_S3_BUCKET_NAME/countries/cultures`
+    - countries image data to `AWS_S3_BUCKET_NAME/countries/image`
+    - food's image data to `AWS_S3_BUCKET_NAME/countries/food`
+    - culture's image data to `AWS_S3_BUCKET_NAME/countries/cultures`
 
 ## How to use
 
