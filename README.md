@@ -95,5 +95,5 @@ set environment variables
 ### execute
 
 ```
-node main.js
+node src/main.js
 ```
